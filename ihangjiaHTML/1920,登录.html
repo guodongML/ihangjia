@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>1920，登录</title>
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+		<div class="logo">
+		<a href="1920首页E1.html">
+		<div class="logo_image">
+			<img src="images/logo1.png" alt="" />
+		</div>
+		<div class="logo_star">
+			ihangjiawang<br />定制你的生活
+		</div>
+		</a>
+		
+		<div class="registered">
+			<a href="#">注册</a>
+		</div>
+		<a href="#"><div class="login">
+			登录
+		</div></a>
+	</div>
+	<div class="line3">
+		
+	</div>
+	<div class="denglu">
+		登录
+	</div>
+	<div class="error">
+	<img src="images/denglu_icon.png" alt="" />
+		<span>您的账户名或密码不正确，如果忘记了密码或者想重新设置一个密码，<br />
+		您可以选择 <a href="#">重置密码</a></span>
+		<p>如果你还没有账户，可以选择 <a href="#">注册</a></p>
+	</div>
+	<div class="main2">
+	<div class="warn" id="warn" >
+		手机号码/邮箱
+		<img src="images/dl_icon.png" alt=""/>
+		<img src="images/denglu_icon.png" alt=""/>
+	</div>
+		<input type="text" class="input_1" placeholder="请输入账号" id="account"/>
+		<div class="warn" id="password">
+			密码
+			<img src="images/dl_icon.png" alt="" style="top: 130px;"/>
+			<img src="images/denglu_icon.png" alt=""  style="top: 130px;"/>
+		</div>
+		<input type="text" / class="input_1" placeholder="请输入密码" id="password">
+		<div class="maind">
+			记住我<img src="images/denglu_icon1.png" alt="" />
+		</div>
+		<!-- <a href="1920首页E1.html"style="text-decoration: none;"> -->
+		<!-- 	<div >
+				登录
+			</div> -->
+			<input type="submit" class="btn" id="loginBtn" value="登录"/>
+		<!-- </a> -->
+	</div>
+	<div class="slip">
+		<a href="#">忘记密码？</a><span><a href="#">没有账号？</a></span>
+	</div>
+	<div class="bottom">
+		<div class="link">
+			<span><a href="#">关于我们</a></span>/<span><a href="#">联系我们</a></span>/<span><a href="#">我要投诉</a></span>/<span><a href="#">用户协议</a></span>
+		</div>
+		<div class="xian">
+			<span></span><span style="margin-left: 135px;"> </span>
+		</div>
+		<div class="image1">
+			<a href="#"><img src="images/icon11.png" alt="" /></a>
+			<a href="#"><img src="images/icon12.png" alt="" style="margin-left: 20px;" /></a>
+		</div>
+		<div class="record">
+			copyright©杭州守仁信息技术有限公司-浙ICP备14004118号
+		</div>
+	</div>
+	<script>
+				var myAccount='123456';
+				var myPassword='654321';
+				document.getElementById('loginBtn').onclick = function () {
+				var account = document.getElementById('account').value;
+				var password=document.getElementById('password').value;
+				
+				if(account==""){
+					document.getElementById('warn').getElementsByTagName("img")[0].style.display = "block";
+					
+					document.getElementById('warn').innerHTML = "请输入正确账号";
+					}
+				else {
+					if(password==""){
+						document.getElementById('password').style.display="block"
+						document.getElementById('password').innerHTML="请输入正确密码";
+					}
+
+					else if(account!=myAccount||password!=myPassword){
+						document.getElementById('warn')[1].style.display="block";
+						document.getElementById('warn')[1].innerHTML="账号或密码错误";
+
+					}
+					else{
+						window.location.href = "1920首页E1.html";
+					}
+				}
+
+
+			}
+	</script>
+</body>
+</html>
