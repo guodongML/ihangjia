@@ -9,7 +9,7 @@
  	text-align: center;
  	margin-top: 28px;
  }
- .main2{
+ .lgn_main2{
  	position: relative;
  	width: 580px;
  	height: 360px;
@@ -20,7 +20,8 @@
  .input_1{
  	font-size: 0.8rem;
  	margin-left: 125px;
- 	width: 330px;
+ 	padding-left: 10px;
+ 	width: 320px;
  	height: 44px;
  	margin-top: 10px;
  }
@@ -66,6 +67,7 @@
  	color: #fff;
  	margin-top: 30px;
  	border-radius: 6px;
+ 	border:none;
  }
  .slip{
  	margin: 0 auto;
@@ -124,6 +126,7 @@
  	color: #fff;
  }
  .error{
+ 	display: none;
  	position: relative;
  	width: 580px;
  	height: 108px;

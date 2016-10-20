@@ -30,25 +30,25 @@
 	<div class="denglu">
 		登录
 	</div>
-	<div class="error">
+	<div class="error" id="err">
 	<img src="images/denglu_icon.png" alt="" />
 		<span>您的账户名或密码不正确，如果忘记了密码或者想重新设置一个密码，<br />
 		您可以选择 <a href="#">重置密码</a></span>
 		<p>如果你还没有账户，可以选择 <a href="#">注册</a></p>
 	</div>
-	<div class="main2">
-	<div class="warn" id="warn" >
-		手机号码/邮箱
-		<img src="images/dl_icon.png" alt=""/>
-		<img src="images/denglu_icon.png" alt=""/>
-	</div>
+	<div class="lgn_main2"id="imgs">
+		<div class="warn" id="warns" >
+			<p>手机号码/邮箱</p>
+			<img src="images/dl_icon.png" alt=""/>
+			<img src="images/denglu_icon.png" alt=""/>
+		</div>
 		<input type="text" class="input_1" placeholder="请输入账号" id="account"/>
-		<div class="warn" id="password">
+		<div class="warn"id="psd">
 			密码
 			<img src="images/dl_icon.png" alt="" style="top: 130px;"/>
 			<img src="images/denglu_icon.png" alt=""  style="top: 130px;"/>
 		</div>
-		<input type="text" / class="input_1" placeholder="请输入密码" id="password">
+		<input type="password"  class="input_1" placeholder="请输入密码" id="password"/>
 		<div class="maind">
 			记住我<img src="images/denglu_icon1.png" alt="" />
 		</div>
@@ -84,26 +84,33 @@
 				var account = document.getElementById('account').value;
 				var password=document.getElementById('password').value;
 				
-				if(account==""){
-					document.getElementById('warn').getElementsByTagName("img")[0].style.display = "block";
+				// if(account==""){
+				// 	document.getElementById('warns').getElementsByTagName("img")[0].style.display = "block";
 					
-					document.getElementById('warn').innerHTML = "请输入正确账号";
-					}
-				else {
-					if(password==""){
-						document.getElementById('password').style.display="block"
-						document.getElementById('password').innerHTML="请输入正确密码";
-					}
+				// 	document.getElementById('warns').innerHTML = "请输入正确账号";
+				// 	document.getElementById('warns').style.color="#ff4543";
+				// 	}
+				// else {
+					// if(password==""){
+					// 	document.getElementById('password').style.display="block"
+					// 	document.getElementById('password').innerHTML="请输入正确密码";
+					// }
 
-					else if(account!=myAccount||password!=myPassword){
-						document.getElementById('warn')[1].style.display="block";
-						document.getElementById('warn')[1].innerHTML="账号或密码错误";
+					if(account!=myAccount||password!=myPassword){
+						
+						document.getElementById('warns').style.color="#ff4543";
+						document.getElementById('psd').style.color="#ff4543";
+						document.getElementById('warns').style.display="block";
+						document.getElementById('imgs').getElementsByTagName('P')[0].innerHTML="账号或密码错误";
+						document.getElementById('err').style.display="block";
+						document.getElementById('imgs').getElementsByTagName('img')[1].style.display="block";
+						document.getElementById('imgs').getElementsByTagName('img')[3].style.display="block";
 
 					}
 					else{
 						window.location.href = "1920首页E1.html";
 					}
-				}
+				// }
 
 
 			}
