@@ -60,7 +60,7 @@
 					<option value="0">请选择</option>
 					<option value="1">文化技能辅导</option>
 				</select>
-				<select name="" id="" class="option">
+				<select name="" id="pose" class="option"style="display: none;">
 					<option value="0">请选择</option>
 					<option value="1">家教</option>
 				</select>
@@ -105,11 +105,41 @@
 		</div>
 	</div>
 	<script>
-	document.getElementById('check').document.getElementsByTagName('input').onclick=function(){
-		document.getElementById('btn').style.background-color="#00ae9d";
-	}
-
+		document.getElementById('post').onchange=function(){
+			var array=document.getElementById('post');
+			var _index=array.selectedIndex;
+			var _value=array.options[_index].value;
+			if(_value==1){
+				document.getElementById('pose').style.display="block";
+			}
+			else{
+				document.getElementById('pose').style.display="none";
+				document.getElementById('check').style.display="none";
+			}
+		}
+	</script>
+	<script>
+		
+		document.getElementById('pose').onchange=function(){
+			var array=document.getElementById('pose');
+			var _index=array.selectedIndex;
+			var _value=array.options[_index].value;
+			if(_value==0){
+				document.getElementById('check').style.display="none";
+			}
+			else{
+				document.getElementById('check').style.display="block";
+			}
+		}
 
 	</script>
+	<script>
+		var array=document.getElementById('check').getElementsByTagName('input');
+		for(var i=0;i<array.length;i++){
+			array[i].onclick=function(){
+				document.getElementById('btn').style.backgroundColor="#00ae9d";
+			}
+		}
+	</script>	
 </body>
 </html>

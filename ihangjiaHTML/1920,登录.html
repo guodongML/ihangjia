@@ -84,27 +84,20 @@
 				var account = document.getElementById('account').value;
 				var password=document.getElementById('password').value;
 				
-				// if(account==""){
-				// 	document.getElementById('warns').getElementsByTagName("img")[0].style.display = "block";
-					
-				// 	document.getElementById('warns').innerHTML = "请输入正确账号";
-				// 	document.getElementById('warns').style.color="#ff4543";
-				// 	}
-				// else {
-					// if(password==""){
-					// 	document.getElementById('password').style.display="block"
-					// 	document.getElementById('password').innerHTML="请输入正确密码";
-					// }
+				
 
 					if(account!=myAccount||password!=myPassword){
 						
 						document.getElementById('warns').style.color="#ff4543";
 						document.getElementById('psd').style.color="#ff4543";
 						document.getElementById('warns').style.display="block";
-						document.getElementById('imgs').getElementsByTagName('P')[0].innerHTML="账号或密码错误";
+						
 						document.getElementById('err').style.display="block";
 						document.getElementById('imgs').getElementsByTagName('img')[1].style.display="block";
 						document.getElementById('imgs').getElementsByTagName('img')[3].style.display="block";
+						document.getElementById('account').style.border="#ff4543 1px solid";
+						document.getElementById('password').style.border="#ff4543 1px solid";
+
 
 					}
 					else{
