@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SourceTree.Analytics.Crash.BugSplat</name>
+    </assembly>
+    <members>
+        <member name="T:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService">
+            <summary>
+                Implementation of <see cref="T:System.IWindowsCrashAnalyticsService" /> using Bugsplat
+            </summary>
+        </member>
+        <member name="F:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService.AccountId">
+            <summary>
+                Defines the bugsplat 'database' to submit bugs to.
+            </summary>
+        </member>
+        <member name="P:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService.ToolPath">
+            <summary>
+                Gets the path to the BugSplat native reporting tool.
+            </summary>
+        </member>
+        <member name="E:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService.ShutdownEventHandler">
+            <inheritdoc />
+        </member>
+        <member name="M:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService.Initialize(System.String,System.Version)">
+            <inheritdoc />
+        </member>
+        <member name="P:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService.AppName">
+            <inheritdoc />
+        </member>
+        <member name="P:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService.AppVersion">
+            <inheritdoc />
+        </member>
+        <member name="P:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService.ExecutionOrder">
+            <inheritdoc />
+        </member>
+        <member name="M:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService.ApplicationThreadExceptionHandler(System.Object,System.Threading.ThreadExceptionEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService.DispatcherUnhandledExceptionHandler(System.Object,System.Windows.Threading.DispatcherUnhandledExceptionEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:SourceTree.Analytics.Crash.BugSplat.CrashAnalyticsService.UnhandledExceptionHandler(System.Object,System.UnhandledExceptionEventArgs)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

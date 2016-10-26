@@ -1,0 +1,513 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GasKit</name>
+    </assembly>
+    <members>
+        <member name="T:GasKit.Client.ApiUrls">
+            <summary>
+                Describes the relative paths to the resources made available by Atlassian's Gateway Analytics Service.
+            </summary>
+        </member>
+        <member name="P:GasKit.Client.ApiUrls.HealthCheck">
+            <summary>
+                Gets the relative URI for the /healthcheck resource.
+            </summary>
+        </member>
+        <member name="P:GasKit.Client.ApiUrls.Event">
+            <summary>
+                Gets the relative URI for the /event resource.
+            </summary>
+        </member>
+        <member name="P:GasKit.Client.ApiUrls.Events">
+            <summary>
+                Gets the relative URI for the /events resource.
+            </summary>
+        </member>
+        <member name="T:GasKit.Client.EventClient">
+            <summary>
+                Default implementation of <see cref="T:GasKit.Client.IEventClient" />.
+                Actually extends <see cref="T:GasKit.Client.EventsClient" /> as that already provides the functionality to create multiple events
+                as a batch.
+            </summary>
+        </member>
+        <member name="M:GasKit.Client.EventClient.#ctor(Octokit.IApiConnection)">
+            <summary>
+                Creates a new instance of the the <see cref="T:GasKit.Client.EventClient" /> class.
+            </summary>
+            <param name="apiConnection">the <see cref="T:Octokit.IApiConnection" /> instance defining the remote connection details.</param>
+        </member>
+        <member name="M:GasKit.Client.EventClient.Create(GasKit.Model.Request.GasEvent)">
+            <inheritdoc />
+        </member>
+        <member name="T:GasKit.Client.EventsClient">
+            <summary>
+                Default implementation of <see cref="T:GasKit.Client.IEventsClient" />.
+            </summary>
+        </member>
+        <member name="M:GasKit.Client.EventsClient.#ctor(Octokit.IApiConnection)">
+            <summary>
+                Creates a new instance of the the <see cref="T:GasKit.Client.EventsClient" /> class.
+            </summary>
+            <param name="apiConnection">the <see cref="T:Octokit.IApiConnection" /> instance defining the remote connection details.</param>
+        </member>
+        <member name="M:GasKit.Client.EventsClient.Create(System.Collections.Generic.IEnumerable{GasKit.Model.Request.GasEvent})">
+            <inheritdoc />
+        </member>
+        <member name="M:GasKit.Client.EventsClient.Create(GasKit.Model.Request.GasEventsCollection)">
+            <inheritdoc />
+        </member>
+        <member name="T:GasKit.Client.HealthCheckClient">
+            <summary>
+                Default implementation of <see cref="T:GasKit.Client.IHealthCheckClient" />.
+            </summary>
+        </member>
+        <member name="M:GasKit.Client.HealthCheckClient.#ctor(Octokit.IApiConnection)">
+            <summary>
+                Creates a new instance of the the <see cref="T:GasKit.Client.HealthCheckClient" /> class.
+            </summary>
+            <param name="apiConnection">the <see cref="T:Octokit.IApiConnection" /> instance defining the remote connection details.</param>
+        </member>
+        <member name="M:GasKit.Client.HealthCheckClient.Get">
+            <inheritdoc />
+        </member>
+        <member name="T:GasKit.Client.IEventClient">
+            <summary>
+                Defines the available functionality for interacting with the Atlassian Gateway Analytics Service's (GAS)
+                /event Resource.
+            </summary>
+        </member>
+        <member name="M:GasKit.Client.IEventClient.Create(GasKit.Model.Request.GasEvent)">
+            <summary>
+                Create a new GasEvent on GAS.
+            </summary>
+            <param name="newGasEvent">the event to create.</param>
+            <remarks>
+                If the server is operating as expected then an instance of <see cref="T:GasKit.Model.Response.GasEventSubmissionStatus" /> will be returned
+                with GasEventSubmissionStatus.ResponseMessage = "Processed 1 event".
+                If there is an issue with the data or the operation of GAS then an instance of
+                <exception cref="T:Octokit.ApiException"> will be thrown.</exception>
+            </remarks>
+            <returns>an GasEventSubmissionStatus instance.</returns>
+        </member>
+        <member name="T:GasKit.Client.IEventsClient">
+            <summary>
+                Defines the available functionality for interacting with the Atlassian Gateway Analytics Service's (GAS)
+                /events Resource.
+            </summary>
+        </member>
+        <member name="M:GasKit.Client.IEventsClient.Create(System.Collections.Generic.IEnumerable{GasKit.Model.Request.GasEvent})">
+            <summary>
+                Create new Events on GAS.
+            </summary>
+            <param name="newEvents">the events to create.</param>
+            <remarks>
+                If the server is operating as expected then an instance of <see cref="T:GasKit.Model.Response.GasEventSubmissionStatus" /> will be returned
+                with GasEventSubmissionStatus.ResponseMessage = "Processed # events".
+                Where # will be the number of events processed. If there is an issue with the data or the operation of GAS then an
+                instance of <exception cref="T:Octokit.ApiException"> will be thrown.</exception>
+            </remarks>
+            <returns>an GasEventSubmissionStatus instance.</returns>
+        </member>
+        <member name="M:GasKit.Client.IEventsClient.Create(GasKit.Model.Request.GasEventsCollection)">
+            <summary>
+                Create new Events on GAS.
+            </summary>
+            <param name="newGasEventsCollection">
+                the events to create, encapsulated in an instance of
+                <see cref="T:GasKit.Model.Request.GasEventsCollection" />
+            </param>
+            <remarks>
+                If the server is operating as expected then an instance of <see cref="T:GasKit.Model.Response.GasEventSubmissionStatus" /> will be returned
+                with GasEventSubmissionStatus.ResponseMessage = "Processed # events".
+                Where # will be the number of events processed. If there is an issue with the data or the operation of GAS then an
+                instance of <exception cref="T:Octokit.ApiException"> will be thrown.</exception>
+            </remarks>
+            <returns>an GasEventSubmissionStatus instance.</returns>
+        </member>
+        <member name="T:GasKit.Client.IHealthCheckClient">
+            <summary>
+                Defines the available functionality for interacting with the Atlassian Gateway Analytics Service's (GAS)
+                /healthcheck Resource.
+            </summary>
+        </member>
+        <member name="M:GasKit.Client.IHealthCheckClient.Get">
+            <summary>
+                Determine if GAS is running by requesting a HealthStatus resource.
+            </summary>
+            <remarks>
+                Currently if the server is working as expected this will return a HealthStatus = "OK".
+                In all other circumstances it is expected that this call will throw an
+                <exception cref="T:Octokit.ApiException">
+                    exception.
+                    There are no circumstances currently where HealthStatus.Status != "OK"
+                </exception>
+            </remarks>
+            <exception cref="T:Octokit.ApiException">Thrown if there are issues communicating with the resource.</exception>
+            <returns>
+                an instance of HealthStatus if the resource is responding. HealthStatus.Status = "OK" if it is working as
+                expected.
+            </returns>
+        </member>
+        <member name="T:GasKit.GasClient">
+            <summary>
+                Describes the Resources made available by the Atlassian Gateway Analytics Server.
+            </summary>
+        </member>
+        <member name="F:GasKit.GasClient.CanonicalGasUrl">
+            <summary>
+            The official URL for GAS at the time of writing.
+            </summary>
+        </member>
+        <member name="M:GasKit.GasClient.#ctor(Octokit.Http.IConnection)">
+            <summary>
+                Creates a new instance of the <see cref="T:GasKit.GasClient" /> class.
+            </summary>
+            <param name="connection">the connection to se to communicate with GAS</param>
+        </member>
+        <member name="M:GasKit.GasClient.#ctor(System.String,System.Uri)">
+            <summary>
+                Creates a new instance of the <see cref="T:GasKit.GasClient" /> class.
+                Simplified constructur that creates a default connection.
+                Useful for testing.
+            </summary>
+            <param name="productName"></param>
+            <param name="gasUri"></param>
+        </member>
+        <member name="M:GasKit.GasClient.#ctor(System.String)">
+            <summary>
+                Creates a new instance of the <see cref="T:GasKit.GasClient" /> class.
+                Simplified constructur that creates a default connection.
+                Useful for testing
+            </summary>
+            <param name="productName"></param>
+        </member>
+        <member name="P:GasKit.GasClient.Connection">
+            <summary>
+                Provides a client connection to make rest requests to HTTP endpoints.
+            </summary>
+        </member>
+        <member name="M:GasKit.GasClient.GetLastApiInfo">
+            <summary>
+                Gets the latest API Info - this will be null if no API calls have been made
+            </summary>
+            <returns><seealso cref="T:Octokit.Http.IApiInfo" /> representing the information returned as part of an Api call</returns>
+        </member>
+        <member name="P:GasKit.GasClient.HealthCheck">
+            <inheritdoc />
+        </member>
+        <member name="P:GasKit.GasClient.Events">
+            <inheritdoc />
+        </member>
+        <member name="P:GasKit.GasClient.Event">
+            <inheritdoc />
+        </member>
+        <member name="T:GasKit.Http.GasDataPipeline">
+            <summary>
+                An Atlassian Gateway Analytics Server (GAS) centric implementation of <see cref="T:Octokit.Http.IDataFormatPipeline" />.
+                Capable of understanding the requirements of the GAS resources and therefore
+                able to serialize, encode, apply headers etc to requests and deserialize responses to and from it.
+            </summary>
+        </member>
+        <member name="F:GasKit.Http.GasDataPipeline.DefaultContentType">
+            <summary>
+                The default content-type to apply to HTTP requests.
+            </summary>
+        </member>
+        <member name="M:GasKit.Http.GasDataPipeline.#ctor">
+            <summary>
+                Creates a new, configured, instance of the <see cref="T:GasKit.Http.GasDataPipeline" /> class.
+            </summary>
+            <remarks>Uses an instance of <see cref="T:GasKit.Http.GasDataSerializer" />.</remarks>
+        </member>
+        <member name="M:GasKit.Http.GasDataPipeline.#ctor(Octokit.Internal.IDataFormatSerializer)">
+            <summary>
+                Creates a new, configured, instance of the <see cref="T:GasKit.Http.GasDataPipeline" /> class.
+            </summary>
+            <param name="serializer"></param>
+        </member>
+        <member name="M:GasKit.Http.GasDataPipeline.SerializeRequest(Octokit.Internal.IRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:GasKit.Http.GasDataPipeline.DeserializeResponse``1(Octokit.Http.IResponse)">
+            <inheritdoc />
+        </member>
+        <member name="P:GasKit.Http.GasDataPipeline.Serializer">
+            <inheritdoc />
+        </member>
+        <member name="T:GasKit.Http.GasDataSerializer">
+            <summary>
+                An Atlassian Gateway Analytics Server (GAS) centric implementation of <see cref="T:Octokit.Internal.IDataFormatSerializer" />.
+                Capable of understanding the requirements of the GAS resources and therefore able to serialize and deserialize data
+                to and from it.
+            </summary>
+        </member>
+        <member name="M:GasKit.Http.GasDataSerializer.Serialize(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:GasKit.Http.GasDataSerializer.Deserialize``1(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:GasKit.IGasClient">
+            <summary>
+                Defines the Resources available for the Atlassian Gateway Analytics Server.
+            </summary>
+        </member>
+        <member name="P:GasKit.IGasClient.HealthCheck">
+            <summary>
+                Gets a configured instance of the <see cref="T:GasKit.Client.IHealthCheckClient" />
+                for accessing the /healthcheck resource.
+            </summary>
+        </member>
+        <member name="P:GasKit.IGasClient.Events">
+            <summary>
+                Gets a configured instance of the <see cref="T:GasKit.Client.IEventsClient" />
+                for accessing the /events resource.
+            </summary>
+        </member>
+        <member name="P:GasKit.IGasClient.Event">
+            <summary>
+                Gets a configured instance of the <see cref="T:GasKit.Client.IEventClient" />
+                for accessing the /event and /events resources.
+            </summary>
+        </member>
+        <member name="T:GasKit.Model.Request.GasEvent">
+            <summary>
+                Describes the structure of an "event" that can be submitted to Atlassian's Gateway Analytics Service.
+            </summary>
+            <remarks>
+                Minimal viable submission looks like: {"name":"yes", "server": "myawesomeserver", "product": "HipChat",
+                "user": "userid", "serverTime": 1431660518868}
+            </remarks>
+        </member>
+        <member name="M:GasKit.Model.Request.GasEvent.#ctor(System.String,System.String,System.String,System.String,System.DateTime)">
+            <summary>
+                Creates a new instance of the <see cref="T:GasKit.Model.Request.GasEvent" /> class.
+            </summary>
+            <remarks>This constructor ensures the bare minimum properties of the event are populated.</remarks>
+            <param name="name">the event name.</param>
+            <param name="server">the identity of the host system.</param>
+            <param name="product">the type of product generating the event.</param>
+            <param name="user">the unique identity of the 'user' or instance.</param>
+            <param name="serverTime">the local time the instance was created.</param>
+        </member>
+        <member name="M:GasKit.Model.Request.GasEvent.#ctor(System.String,System.String,System.String,System.String,System.Int64)">
+            <summary>
+            NewtonSoft.JSON deserialization friendlt minimal constructor.
+            </summary>
+            <remarks>This constructor ensures the bare minimum properties of the event are populated.</remarks>
+            <param name="name">the event name.</param>
+            <param name="server">the identity of the host system.</param>
+            <param name="product">the type of product generating the event.</param>
+            <param name="user">the unique identity of the 'user' or instance.</param>
+            <param name="serverTime">the local time the instance was created.</param>
+        </member>
+        <member name="M:GasKit.Model.Request.GasEvent.#ctor(System.String,System.String,System.String,System.String,System.Version,System.String,System.String,System.DateTime,System.String,System.Net.IPAddress,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+                Creates a new instance of the <see cref="T:GasKit.Model.Request.GasEvent" /> class.
+            </summary>
+            <remarks>This constructor allows setting of the full range of properties of the event are populated.</remarks>
+            <param name="name">the event name.</param>
+            <param name="server">the identity of the host system.</param>
+            <param name="product">the type of product generating the event.</param>
+            <param name="subProduct"></param>
+            <param name="version"></param>
+            <param name="user">the unique identity of the 'user' or instance.</param>
+            <param name="session"></param>
+            <param name="serverTime">the local time the instance was created.</param>
+            <param name="sen"></param>
+            <param name="sourceIP"></param>
+            <param name="atlPath"></param>
+            <param name="properties"></param>
+        </member>
+        <member name="M:GasKit.Model.Request.GasEvent.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int64,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            NewtonSoft.JSON deserialization friendly constructor.
+            </summary>
+            <param name="name"></param>
+            <param name="server"></param>
+            <param name="product"></param>
+            <param name="subProduct"></param>
+            <param name="version"></param>
+            <param name="user"></param>
+            <param name="session"></param>
+            <param name="serverTime"></param>
+            <param name="sen"></param>
+            <param name="sourceIP"></param>
+            <param name="atlPath"></param>
+            <param name="properties"></param>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.Name">
+            <summary>
+                Gets the event Name.
+            </summary>
+            <remarks>
+                This is an arbitrary string.
+                This should:
+                describe the condition that lead to the event being fired
+                should be clear and descriptive
+                be in '.' format
+                e.g.
+                "hipchat.client.room.changed"
+            </remarks>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.Server">
+            <summary>
+                Gets the host server identity.
+            </summary>
+            <remarks>
+                This value changes depending on the product. It is always a representation of the tenant of a product.
+                e.g.
+                "-"
+                For HipChat which is multi-tenanted it is the groupId in the format:
+                "gid-{group_id}"
+                For cloud products it is in the format:
+                "subdomain.atlassian.net"
+                For Bitbucket, we generally use this to denote the environment where the event is being triggered:
+                "staging"
+                "production"
+            </remarks>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.Product">
+            <summary>
+                Gets the identity of the generating product.
+            </summary>
+            <remarks>
+                his can be hardcoded per product, it is important to be consistent when sending this within a product.
+                examples
+                HipChat
+                "HipChat"
+                JIRA
+                "jira"
+                Bitbucket
+                "bitbucket"
+            </remarks>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.User">
+            <summary>
+                Gets the identity of the 'user' generating the event.
+            </summary>
+            <remarks>
+                'User' could refer to a unique instance of the product.
+                In most products this is actually a userId.
+                For anonymous values, it is recommended that you use a dash.
+                "-"
+                In HipChat this is in the format of:
+                'uid-{user_id}'
+            </remarks>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.ServerTime">
+            <summary>
+                Gets the time the event was generated.
+            </summary>
+            <remarks>UTC milliseconds since epoch.</remarks>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.SubProduct">
+            <summary>
+                Gets the SubProduct
+            </summary>
+            <remarks>
+                An optional sub product to help narrow down where this event was fired from. This could be a plugin or some
+                other contextual property.
+            </remarks>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.Session">
+            <summary>
+                Gets the current user session.
+            </summary>
+            <remarks>
+                A way to capture and uniquely identify a user's browser session if it is a web based application. This helps
+                to understand more about activity per session.
+            </remarks>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.Sen">
+            <summary>
+                Gets the Support Entitlement Number.
+            </summary>
+            <remarks>Support Entitlement Number - A unique identifier for a customer's license.</remarks>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.SourceIP">
+            <summary>
+                Gets the source IP address.
+            </summary>
+            <remarks>
+                IP address of the client from which this event was triggered.
+                If it is a server based event this should be the client's IP from the original request.
+                If it is a client based event it should be the IP of the client that is triggering the event.
+            </remarks>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.AtlPath">
+            <summary>
+                Gets the Atlassian trackign cookie
+            </summary>
+            <remarks>
+                For sites that use an __atl_path cookie this should be passed in verbatim. The format of the cookie looks like an
+                IP address.
+                This is used to join anonymous sessions to logged in sessions.
+            </remarks>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEvent.Properties">
+            <summary>
+                Gets the additional context properties.
+            </summary>
+            <remarks>
+                This is a JSON blob of additional properties that you will want to pass in with your event.
+                Properties need to be String key-value pairs, nested properties are not allowed.At worst, you can serialise your
+                nested properties into a single string value.
+                These properties are more difficult to query on so ensure that any vital information is included in the event name.
+                The properties should provide additional context to the event.
+            </remarks>
+        </member>
+        <member name="T:GasKit.Model.Request.GasEventsCollection">
+            <summary>
+                Describes the structure of a collection of <see cref="T:GasKit.Model.Request.GasEvent" /> instances that can bee submitted to the
+                Atlassian Gateway Analytics Server.
+            </summary>
+        </member>
+        <member name="M:GasKit.Model.Request.GasEventsCollection.#ctor(System.Collections.Generic.IEnumerable{GasKit.Model.Request.GasEvent})">
+            <summary>
+                Creates a new instance of the <see cref="T:GasKit.Model.Request.GasEventsCollection" /> class.
+            </summary>
+            <param name="events">the list of <see cref="T:GasKit.Model.Request.GasEvent" /> instances to populate the collection with</param>
+        </member>
+        <member name="P:GasKit.Model.Request.GasEventsCollection.Events">
+            <summary>
+                Gets a readonly collecion of <see cref="T:GasKit.Model.Request.GasEvent" /> instances.
+            </summary>
+        </member>
+        <member name="T:GasKit.Model.Response.GasEventSubmissionStatus">
+            <summary>
+                Describes the information returned following the submission of <see cref="T:GasKit.Model.Request.GasEvent" /> instances to Atlassian's
+                Gateway Analytics Server (GAS)
+            </summary>
+        </member>
+        <member name="M:GasKit.Model.Response.GasEventSubmissionStatus.#ctor(System.String)">
+            <summary>
+                Creates a new instance of the <see cref="T:GasKit.Model.Response.GasEventSubmissionStatus" /> class.
+            </summary>
+            <param name="responseMessage"></param>
+        </member>
+        <member name="P:GasKit.Model.Response.GasEventSubmissionStatus.ResponseMessage">
+            <summary>
+                Gets the response message return by GAS.
+            </summary>
+        </member>
+        <member name="T:GasKit.Model.Response.HealthStatus">
+            <summary>
+                Describes the information returned from requests to the /healthcheck resource of Atlassian's
+                Gateway Analytics Server.
+            </summary>
+        </member>
+        <member name="M:GasKit.Model.Response.HealthStatus.#ctor(System.String)">
+            <summary>
+                Creates a new instance of the <see cref="T:GasKit.Model.Response.HealthStatus" /> class.
+            </summary>
+            <param name="status">the status returned by GAS></param>
+        </member>
+        <member name="P:GasKit.Model.Response.HealthStatus.Status">
+            <summary>
+                Gets the status returned by GAS.
+            </summary>
+        </member>
+    </members>
+</doc>

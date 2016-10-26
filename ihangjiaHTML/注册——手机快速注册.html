@@ -5,6 +5,26 @@
 	<title>注册——手机快速注册</title>
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/styles.css" />
+	<script tyep="text/javascript"src="js/jquery.js"></script>
+	<script>
+	$(document).ready(function(){
+		
+		$(".m_btn").click(function(){
+			if($("input").text()==""){
+			$("input").css("border","solid #ff4543 1px")
+			$("p").css("color","#ff4543");
+		}
+		else{
+			window.location.href="注册";
+		}
+
+		})
+		
+
+	})
+
+
+	</script>
 </head>
 <body>
 		<div class="logo">
@@ -61,9 +81,9 @@
 					<div class="m_text"style="margin-top: 0px;margin-left: 130px;margin-bottom: 20px;">
 				当您点击注册按钮时，即证明您已同意<a href="#">商家协议</a>
 			</div>
-			<div class="m_btn"style="margin-top: 25px;margin:0 auto;">
+			<a href="#"><div class="m_btn"style="margin-top: 25px;margin:0 auto;">
 				注册
-			</div>
+			</div></a>
 	</div>
 		<div class="mobile_main"style="display: none;">
 			<div class="mobile_login aly"style="margin-left: 70px;border-radius: 3px 0 0 3px ">
