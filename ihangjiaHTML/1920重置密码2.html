@@ -9,8 +9,14 @@
 	<script>
 		$(document).ready(function(){
 		$(".once").click(function(){
-			$("input").css("border","solid #ff4543 1px");
-			$("p").css("color","#ff4543").show();
+			var arry=$("input").val();
+			if(arry==""){
+				$("input").css("border","1px #ff4543 solid");
+				$("p").css("color","#ff4543").show();
+			}
+			else{
+				window.location.href="https://www.hao123.com/?tn=96599076_hao_pg";
+			}
 		})
 	})
 	</script>
