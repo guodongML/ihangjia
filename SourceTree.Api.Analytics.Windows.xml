@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SourceTree.Api.Analytics.Windows</name>
+    </assembly>
+    <members>
+        <member name="T:System.IWindowsCrashAnalyticsService">
+            <summary>
+                Extension to <see cref="T:SourceTree.Analytics.ICrashAnalyticsService" /> to include Windows UI specific crash handlers.
+            </summary>
+        </member>
+        <member name="P:System.IWindowsCrashAnalyticsService.ExecutionOrder">
+            <summary>
+                Temporary property to force order of registration and therefore execution of event handlers.
+            </summary>
+        </member>
+        <member name="M:System.IWindowsCrashAnalyticsService.DispatcherUnhandledExceptionHandler(System.Object,System.Windows.Threading.DispatcherUnhandledExceptionEventArgs)">
+            <summary>
+                Handle previously unhandled exceptions in an Application.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:System.IWindowsCrashAnalyticsService.ApplicationThreadExceptionHandler(System.Object,System.Threading.ThreadExceptionEventArgs)">
+            <summary>
+                Handle previously unhandled exceptions in WinForm Threads.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+    </members>
+</doc>

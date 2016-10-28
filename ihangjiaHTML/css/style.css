@@ -534,6 +534,8 @@
 	padding-left: 10px;
 	width: 320px;
 	height: 44px;
+	border: #ccc 1px solid;
+
 	margin-top: 10px;
 	font-size: .8rem;
 	margin-bottom: 20px;
@@ -544,6 +546,11 @@
 .MSISDN span img{
 	vertical-align: middle;
 	margin-right: 20px;
+}
+.MSP{
+	font-size: .7rem;
+	display: none;
+	color: #ff4543;
 }
 .gain{
 	width: 170px;

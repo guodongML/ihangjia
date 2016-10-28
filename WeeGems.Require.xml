@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WeeGems.Require</name>
+    </assembly>
+    <members>
+        <member name="T:System.Require">
+            <summary>
+            Defines a code contract class for validating parameter argument pre-conditions.
+            </summary>
+        </member>
+        <member name="M:System.Require.ArgumentNotNull``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String)">
+            <summary>
+            Validates a precondition on an argument passed to a method, asserting that the argument
+            is not a <c>null</c> reference.
+            </summary>
+            <typeparam name="T">The type of the argument.</typeparam>
+            <param name="expression">An expression which accesses the argument.</param>
+            <param name="message">An optional message to be included in the exception if the
+            precondition fails.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the argument accessed by the expression is a <c>null</c> reference.
+            </exception>
+            <example>
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(Foo foo)
+                {
+                    Require.ArgumentNotNull(() => foo);
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+            The expression passed to the <paramref name="expression"/> parameter must be a single
+            member expression (see example). Passing an expression of any other form will result
+            in a runtime assertion failure.
+            </remarks>
+        </member>
+        <member name="M:System.Require.ArgumentsNotNull(System.Object,System.String)">
+            <summary>
+            Throws a <see cref="T:System.ArgumentNullException"/> if the specified argument is
+            a <c>null</c> reference.
+            </summary>
+            <param name="arguments">An anonymous object containing the method argument(s) to be
+            validated.</param>
+            <param name="message">An optional message to be included in the exception if the
+            precondition fails.</param>
+            <example>
+                Multiple argument validation.
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(Foo arg1, Bar arg2, Baz arg3)
+                {
+                    Require.ArgumentsNotNull(new { arg1, arg2, arg3 });
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+                <list type="bullet">
+                    <item>
+                        <description>
+                        You can validate multiple arguments at once by passing an anonymous object with
+                        distinct properties for each argument.
+                        </description>
+                    </item>
+                        <description>
+                        Passing a <c>null</c> value to the <paramref name="arguments"/> parameter will result
+                        in a runtime assertion failure.
+                        </description>
+                    <item>
+                    </item>
+                </list>
+            </remarks>
+        </member>
+        <member name="M:System.Require.ArgumentIsDefined``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String)">
+            <summary>
+            Validates a precondition on a method parameter, asserting that an enumeration argument is a valid, defined enumeration value for the type.
+            </summary>
+            <typeparam name="T">The type of the argument.</typeparam>
+            <param name="expression">An expression which accesses the argument.</param>
+            <param name="message">An optional message to be included in the exception if the
+            precondition fails.</param>
+            <exception cref="T:System.ArgumentException">
+            Thrown if the specified value is not a valid defined value for the enumeration type.
+            </exception>
+            <example>
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(StringComparison comparison)
+                {
+                    Require.ArgumentIsDefined(() => comparison);
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+            The expression passed to the <paramref name="expression"/> parameter must be a single
+            member expression (see example). Passing an expression of any other form will result
+            in a runtime assertion failure.
+            </remarks>
+        </member>
+        <member name="M:System.Require.ArgumentInCorrectFormat(System.Linq.Expressions.Expression{System.Func{System.String}},System.String,System.Text.RegularExpressions.RegexOptions,System.String)">
+            <summary>
+            Validates a precondition on a method parameter, asserting that a string argument matches
+            a format defined by a regular expression pattern.
+            </summary>
+            <param name="expression">An expression which accesses the argument.</param>
+            <param name="regexPattern">A regular expression pattern used to validate the format
+            of the argument.</param>
+            <param name="regexOptions">Optional matching options to use when validating the argument
+            against the regular expression.</param>
+            <param name="message">An optional message to be included in the exception should the
+            precondition fail.</param>
+            <example>
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(String colour)
+                {
+                    Require.ArgumentInCorrectFormat(() => colour, "#[0-9A-Fa-f]{6}");
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+            The expression passed to the <paramref name="expression"/> parameter must be a single
+            member expression (see example). Passing an expression of any other form will result
+            in a runtime assertion failure.
+            </remarks>
+        </member>
+        <member name="M:System.Require.ArgumentNotDefault``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String)">
+            <summary>
+            Validates a precondition on a method parameter, asserting that the argument is not the
+            default value for type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the method parameter.</typeparam>
+            <param name="expression">An expression which accesses the argument.</param>
+            <param name="message">An optional message to be included in the exception if the
+            precondition fails.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the argument accessed by the specified expression is the default value for
+            type <typeparamref name="T"/>.
+            </exception>
+            <example>
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(DateTime date)
+                {
+                    Require.ArgumentNotDefault(() => date);
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+            The expression passed to the <paramref name="expression"/> parameter must be a single
+            member expression (see example). Passing an expression of any other form will result
+            in a runtime assertion failure.
+            </remarks>
+        </member>
+        <member name="M:System.Require.ArgumentNotNullOrWhitespace(System.Linq.Expressions.Expression{System.Func{System.String}},System.String)">
+            <summary>
+            Throws a <see cref="T:System.ArgumentNullException"/> if the specified string argument
+            is a null reference, empty string or whitespace.
+            </summary>
+            <param name="expression">An expression which accesses the argument which was passed as
+            a parameter to the method.</param>
+            <param name="message">An optional message to be included in the exception if the
+            precondition fails.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the string argument referenced in the expression is <c>null</c>, an empty
+            string, or whitespace.
+            </exception>
+            <example>
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(String foo)
+                {
+                    Require.ArgumentNotNullOrWhitespace(() => foo);
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+            The expression passed to the <paramref name="expression"/> parameter must be a single
+            member expression (see example). Passing an expression of any other form will result
+            in a runtime assertion failure.
+            </remarks>
+        </member>
+        <member name="M:System.Require.ArgumentCollectionNotEmpty``1(System.Linq.Expressions.Expression{System.Func{System.Collections.Generic.IEnumerable{``0}}},System.String)">
+            <summary>
+            Throws a <see cref="T:System.ArgumentException"/> if the specified collection argument
+            is empty.
+            </summary>
+            <typeparam name="T">The type of element in the collection.</typeparam>
+            <param name="expression">An expression which accesses the argument which was
+            passed as a parameter to the method.</param>
+            <param name="message">An optional message to be included in the exception if the
+            precondition fails.</param>
+            <exception cref="T:System.ArgumentException">
+            Thrown if the specified collection argument is empty.
+            </exception>
+            <example>
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(IList<String> someStrings)
+                {
+                    Require.ArgumentCollectionNotEmpty(() => someStrings);
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+            The expression passed to the <paramref name="expression"/> parameter must be a single
+            member expression (see example). Passing an expression of any other form will result
+            in a runtime assertion failure.
+            </remarks>
+        </member>
+        <member name="M:System.Require.ArgumentGreaterThanOrEqual``1(System.Linq.Expressions.Expression{System.Func{``0}},``0,System.String)">
+            <summary>
+            Validates a precondition on a method argument by asserting that it is greater than or
+            equal to an arbitrary value.
+            </summary>
+            <typeparam name="T">The type of method parameter.</typeparam>
+            <param name="expression">An expression which accesses the method argument.</param>
+            <param name="minimumValue">The minimum permissable value for the argument.</param>
+            <param name="message">An optional message to be included in the exception if the
+            precondition fails.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown if the value of the method argument is less than the permissable minimum value.
+            </exception>
+            <example>
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(Int32 foo)
+                {
+                    Require.ArgumentGreaterThanOrEqual(() => foo, 0);
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+            The expression passed to the <paramref name="expression"/> parameter must be a single
+            member expression (see example). Passing an expression of any other form will result
+            in a runtime assertion failure.
+            </remarks>
+        </member>
+        <member name="M:System.Require.ArgumentLessThanOrEqual``1(System.Linq.Expressions.Expression{System.Func{``0}},``0,System.String)">
+            <summary>
+            Validates a precondition on a method argument by asserting that it is less than or
+            equal to an arbitrary value.
+            </summary>
+            <typeparam name="T">The type of method parameter.</typeparam>
+            <param name="expression">An expression which accesses the method argument.</param>
+            <param name="maximumValue">The maximum permissable value for the argument.</param>
+            <param name="message">An optional message to be included in the exception if the
+            precondition fails.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown if the value of the method argument is greater than the permissable maximum value.
+            </exception>
+            <example>
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(Int32 foo)
+                {
+                    Require.ArgumentLessThanOrEqual(() -> foo, 100);
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+            The expression passed to the <paramref name="expression"/> parameter must be a single
+            member expression (see example). Passing an expression of any other form will result
+            in a runtime assertion failure.
+            </remarks>
+        </member>
+        <member name="M:System.Require.ArgumentWithinRange``1(System.Linq.Expressions.Expression{System.Func{``0}},``0,``0,System.String)">
+            <summary>
+            Validates a precondition on a method argument by asserting that it falls within a
+            specified range of values.
+            </summary>
+            <typeparam name="T">The type of method parameter.</typeparam>
+            <param name="expression">An expression which accesses the method argument.</param>
+            <param name="minimumValue">The minimum permissable value for the argument.</param>
+            <param name="maximumValue">The maximum permissable value for the argument.</param>
+            <param name="message">An optional message to be included in the exception if the
+            precondition fails.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown if the value of the method argument is less than the minimum permissable value,
+            or greater than the maximum permissable value.
+            </exception>
+            <example>
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(Int32 foo)
+                {
+                    Require.ArgumentWithinRange(() => foo, 0, 100);
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+            The expression passed to the <paramref name="expression"/> parameter must be a single
+            member expression (see example). Passing an expression of any other form will result
+            in a runtime assertion failure.
+            </remarks>
+        </member>
+        <member name="M:System.Require.ArgumentIsFinite(System.Linq.Expressions.Expression{System.Func{System.Double}},System.String)">
+            <summary>
+            Validates a precondition on a method parameter by asserting that it is a finite number.
+            That is, does not represent either positive or negative inifinity, and is not NaN.
+            </summary>
+            <param name="expression">An expression which accesses the method parameter.</param>
+            <param name="message">An optional message to be included in the exception if the
+            precondition fails.</param>
+            <exception cref="T:System.ArgumentException">
+            Thrown if the value of the method argument is positive or negative infinity, or NaN.
+            </exception>
+            <example>
+                <code lang="C#">
+                <![CDATA[
+                void SomeMethod(Double foo)
+                {
+                    Require.ArgumentIsFinite(() => foo);
+                }
+                ]]>
+                </code>
+            </example>
+            <remarks>
+            The expression passed to the <paramref name="expression"/> parameter must be a single
+            member expression (see example). Passing an expression of any other form will result
+            in a runtime assertion failure.
+            </remarks>
+        </member>
+    </members>
+</doc>

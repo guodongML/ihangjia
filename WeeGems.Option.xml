@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WeeGems.Option</name>
+    </assembly>
+    <members>
+        <member name="T:System.FuncExtensions">
+            <summary>
+            Defines extension methods for the <see cref="T:System.Func`1"/> group of delegates, providing a mechanism where the return values can be
+            wrapped into an option type.
+            </summary>
+        </member>
+        <member name="M:System.FuncExtensions.OptionReturnValue``1(System.Func{``0})">
+            <summary>
+            Wraps the specified delegate with another, modifying the method signature so that the return value is enclosed in a
+            <see cref="T:System.Option`1"/> type.
+            </summary>
+            <typeparam name="TResult">The type of the methods return value.</typeparam>
+            <param name="instance">The extension instance.</param>
+            <returns>A new delegate function which wraps this instance, where the return value is wrapped in a <see cref="T:System.Option`1"/> type
+            instance.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the value passed to the <paramref name="instance"/> parameter is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:System.FuncExtensions.OptionReturnValue``2(System.Func{``0,``1})">
+            <summary>
+            Wraps the specified delegate with another, modifying the method signature so that the return value is enclosed in a
+            <see cref="T:System.Option`1"/> type.
+            </summary>
+            <typeparam name="T1">The type of the first method argument.</typeparam>
+            <typeparam name="TResult">The type of the methods return value.</typeparam>
+            <param name="instance">The extension instance.</param>
+            <returns>A new delegate function which wraps this instance, where the return value is wrapped in a <see cref="T:System.Option`1"/> type
+            instance.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the value passed to the <paramref name="instance"/> parameter is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:System.FuncExtensions.OptionReturnValue``3(System.Func{``0,``1,``2})">
+            <summary>
+            Wraps the specified delegate with another, modifying the method signature so that the return value is enclosed in a
+            <see cref="T:System.Option`1"/> type.
+            </summary>
+            <typeparam name="T1">The type of the first method argument.</typeparam>
+            <typeparam name="T2">The type of the second method argument.</typeparam>
+            <typeparam name="TResult">The type of the methods return value.</typeparam>
+            <param name="instance">The extension instance.</param>
+            <returns>A new delegate function which wraps this instance, where the return value is wrapped in a <see cref="T:System.Option`1"/> type
+            instance.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the value passed to the <paramref name="instance"/> parameter is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:System.FuncExtensions.OptionReturnValue``4(System.Func{``0,``1,``2,``3})">
+            <summary>
+            Wraps the specified delegate with another, modifying the method signature so that the return value is enclosed in a
+            <see cref="T:System.Option`1"/> type.
+            </summary>
+            <typeparam name="T1">The type of the first method argument.</typeparam>
+            <typeparam name="T2">The type of the second method argument.</typeparam>
+            <typeparam name="T3">The type of the third method argument.</typeparam>
+            <typeparam name="TResult">The type of the methods return value.</typeparam>
+            <param name="instance">The extension instance.</param>
+            <returns>A new delegate function which wraps this instance, where the return value is wrapped in a <see cref="T:System.Option`1"/> type
+            instance.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the value passed to the <paramref name="instance"/> parameter is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:System.FuncExtensions.OptionReturnValue``5(System.Func{``0,``1,``2,``3,``4})">
+            <summary>
+            Wraps the specified delegate with another, modifying the method signature so that the return value is enclosed in a
+            <see cref="T:System.Option`1"/> type.
+            </summary>
+            <typeparam name="T1">The type of the first method argument.</typeparam>
+            <typeparam name="T2">The type of the second method argument.</typeparam>
+            <typeparam name="T3">The type of the third method argument.</typeparam>
+            <typeparam name="T4">The type of the fourth method argument.</typeparam>
+            <typeparam name="TResult">The type of the methods return value.</typeparam>
+            <param name="instance">The extension instance.</param>
+            <returns>A new delegate function which wraps this instance, where the return value is wrapped in a <see cref="T:System.Option`1"/> type
+            instance.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the value passed to the <paramref name="instance"/> parameter is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:System.FuncExtensions.OptionReturnValue``6(System.Func{``0,``1,``2,``3,``4,``5})">
+            <summary>
+            Wraps the specified delegate with another, modifying the method signature so that the return value is enclosed in a
+            <see cref="T:System.Option`1"/> type.
+            </summary>
+            <typeparam name="T1">The type of the first method argument.</typeparam>
+            <typeparam name="T2">The type of the second method argument.</typeparam>
+            <typeparam name="T3">The type of the third method argument.</typeparam>
+            <typeparam name="T4">The type of the fourth method argument.</typeparam>
+            <typeparam name="T5">The type of the fifth method argument.</typeparam>
+            <typeparam name="TResult">The type of the methods return value.</typeparam>
+            <param name="instance">The extension instance.</param>
+            <returns>A new delegate function which wraps this instance, where the return value is wrapped in a <see cref="T:System.Option`1"/> type
+            instance.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the value passed to the <paramref name="instance"/> parameter is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:System.FuncExtensions.OptionReturnValue``7(System.Func{``0,``1,``2,``3,``4,``5,``6})">
+            <summary>
+            Wraps the specified delegate with another, modifying the method signature so that the return value is enclosed in a
+            <see cref="T:System.Option`1"/> type.
+            </summary>
+            <typeparam name="T1">The type of the first method argument.</typeparam>
+            <typeparam name="T2">The type of the second method argument.</typeparam>
+            <typeparam name="T3">The type of the third method argument.</typeparam>
+            <typeparam name="T4">The type of the fourth method argument.</typeparam>
+            <typeparam name="T5">The type of the fifth method argument.</typeparam>
+            <typeparam name="T6">The type of the sixth method argument.</typeparam>
+            <typeparam name="TResult">The type of the methods return value.</typeparam>
+            <param name="instance">The extension instance.</param>
+            <returns>A new delegate function which wraps this instance, where the return value is wrapped in a <see cref="T:System.Option`1"/> type
+            instance.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the value passed to the <paramref name="instance"/> parameter is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:System.FuncExtensions.OptionReturnValue``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7})">
+            <summary>
+            Wraps the specified delegate with another, modifying the method signature so that the return value is enclosed in a
+            <see cref="T:System.Option`1"/> type.
+            </summary>
+            <typeparam name="T1">The type of the first method argument.</typeparam>
+            <typeparam name="T2">The type of the second method argument.</typeparam>
+            <typeparam name="T3">The type of the third method argument.</typeparam>
+            <typeparam name="T4">The type of the fourth method argument.</typeparam>
+            <typeparam name="T5">The type of the fifth method argument.</typeparam>
+            <typeparam name="T6">The type of the sixth method argument.</typeparam>
+            <typeparam name="T7">The type of the seventh method argument.</typeparam>
+            <typeparam name="TResult">The type of the methods return value.</typeparam>
+            <param name="instance">The extension instance.</param>
+            <returns>A new delegate function which wraps this instance, where the return value is wrapped in a <see cref="T:System.Option`1"/> type
+            instance.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the value passed to the <paramref name="instance"/> parameter is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:System.FuncExtensions.OptionReturnValue``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+            <summary>
+            Wraps the specified delegate with another, modifying the method signature so that the return value is enclosed in a
+            <see cref="T:System.Option`1"/> type.
+            </summary>
+            <typeparam name="T1">The type of the first method argument.</typeparam>
+            <typeparam name="T2">The type of the second method argument.</typeparam>
+            <typeparam name="T3">The type of the third method argument.</typeparam>
+            <typeparam name="T4">The type of the fourth method argument.</typeparam>
+            <typeparam name="T5">The type of the fifth method argument.</typeparam>
+            <typeparam name="T6">The type of the sixth method argument.</typeparam>
+            <typeparam name="T7">The type of the seventh method argument.</typeparam>
+            <typeparam name="T8">The type of the eighth method argument.</typeparam>
+            <typeparam name="TResult">The type of the methods return value.</typeparam>
+            <param name="instance">The extension instance.</param>
+            <returns>A new delegate function which wraps this instance, where the return value is wrapped in a <see cref="T:System.Option`1"/> type
+            instance.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the value passed to the <paramref name="instance"/> parameter is <c>null</c>.
+            </exception>
+        </member>
+        <member name="T:System.Option`1">
+            <summary>
+            Defines an option monad, similar to 'Option' in F#\Scala or 'Maybe' in Haskell.
+            </summary>
+            <typeparam name="T">The type of value contained in the option.</typeparam>
+        </member>
+        <member name="M:System.Option`1.#ctor(`0)">
+            <summary>
+            Prevents a default instance of the <see cref="T:System.Option`1"/> class from being created.
+            </summary>
+            <param name="value">The option value.</param>
+        </member>
+        <member name="M:System.Option`1.Bind``1(System.Func{`0,``0})">
+            <summary>
+            Executes a function on the value, if there is a value. The function must take exactly one argument, and its parameter must be the option
+            type.
+            </summary>
+            <param name="function">The function to execute on the value, if there is a value.</param>
+            <returns>The result of the function executed on the value, or a none option is there is no value.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if the value passed to the <paramref name="function"/> parameter is null.
+            </exception>
+        </member>
+        <member name="M:System.Option`1.Some(`0)">
+            <summary>
+            Creates an option that has a value that is not none.
+            </summary>
+            <param name="value">The option value.</param>
+            <returns>A reference to an option that is not the none value.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if the value passed to the <paramref name="value"/> parameter is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:System.Option`1.None">
+            <summary>
+            Creates an option that is the none value.
+            </summary>
+            <returns>A reference to an option that is the none value.</returns>
+        </member>
+        <member name="M:System.Option`1.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Option`1.Equals(System.Option{`0})">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Option`1.Equals(`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Option`1.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Option`1.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Option`1.op_True(System.Option{`0})">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Option`1.op_False(System.Option{`0})">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Option`1.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Option`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="P:System.Option`1.IsSome">
+            <summary>
+            Gets a value indicating whether or not the option has a value.
+            </summary>
+        </member>
+        <member name="P:System.Option`1.IsNone">
+            <summary>
+            Gets a value indicating whether or not the option is the none value.
+            </summary>
+        </member>
+        <member name="P:System.Option`1.Value">
+            <summary>
+            Gets the value of the option.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if the option is none.
+            </exception>
+        </member>
+        <member name="T:System.ObjectExtensions">
+            <summary>
+            Defines extension methods for the <see cref="T:System.Object"/> class.
+            </summary>
+        </member>
+        <member name="M:System.ObjectExtensions.AsOption``1(``0)">
+            <summary>
+            Creates an option type instance from the specified object. If the object is a <c>null</c> pointer, returns an empty option; otherwise
+            returns a value option.
+            </summary>
+            <typeparam name="T">The type of object.</typeparam>
+            <param name="value">The extension instance.</param>
+            <returns>An option type with a value if <paramref name="value"/> is not <c>null</c>; otherwise an empty option.</returns>
+        </member>
+    </members>
+</doc>

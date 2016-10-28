@@ -5,6 +5,21 @@
 	<title>1920重置密码2</title>
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/styles.css" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+		$(".once").click(function(){
+			var arry=$("input").val();
+			if(arry==""){
+				$("input").css("border","1px #ff4543 solid");
+				$("p").css("color","#ff4543").show();
+			}
+			else{
+				window.location.href="https://www.hao123.com/?tn=96599076_hao_pg";
+			}
+		})
+	})
+	</script>
 </head>
 <body>
 	<div class="logo">
@@ -32,19 +47,20 @@
 		<div class="mobile_logo">
 			重置密码
 		</div>
-		<div class="mobile_main"style="height: 320px;padding-top: 40px;">
+		<div class="mobile_main"style="height: 320px;padding-top: 40px;"id="main">
 			<div class="MSISDN"style="margin-top: 0;">
 			<p>创建新密码</p>
 			<input type="text" />
+			
 		</div>
 		<div class="MSISDN"style="margin-top: 0;">
 			<p>确认密码</p>
-			<input type="text"/>
-			
+			<input type="text"/style="margin-bottom:10px;">
+			<p class="MSP">请输入确认密码/密码不符合，请重新输入</p>
 		</div>
-		<div class="once">
+		<a href="#"><div class="once">
 			立即重置
-		</div>
+		</div></a>
 
 		</div>
 		<div class="bottom"style="margin:0px;margin-top: 330px;">
@@ -62,5 +78,6 @@
 			copyright©杭州守仁信息技术有限公司-浙ICP备14004118号
 		</div>
 	</div>
+	
 </body>
 </html>

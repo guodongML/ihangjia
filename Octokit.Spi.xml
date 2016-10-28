@@ -1,0 +1,648 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Octokit.Spi</name>
+    </assembly>
+    <members>
+        <member name="T:Octokit.Authentication.AuthenticationType">
+            <summary>
+            Authentication protocols supported by the GitHub API
+            </summary>
+        </member>
+        <member name="F:Octokit.Authentication.AuthenticationType.Anonymous">
+            <summary>
+            No credentials provided
+            </summary>
+        </member>
+        <member name="F:Octokit.Authentication.AuthenticationType.Basic">
+            <summary>
+            Username &amp; password
+            </summary>
+        </member>
+        <member name="F:Octokit.Authentication.AuthenticationType.Oauth">
+            <summary>
+            Delegated access to a third party
+            </summary>
+        </member>
+        <member name="T:Octokit.Helpers.IApiPagination">
+            <summary>
+            Used to paginate through API response results.
+            </summary>
+            <remarks>
+            This is meant to be internal, but I factored it out so we can change our mind more easily later.
+            </remarks>
+        </member>
+        <member name="M:Octokit.Helpers.IApiPagination.GetAllPages``1(System.Func{System.Threading.Tasks.Task{Octokit.Helpers.IReadOnlyPagedCollection{``0}}},System.Uri)">
+            <summary>
+            Paginate a request to asynchronous fetch the results until no more are returned
+            </summary>
+            <typeparam name="T">Type of the API resource to get.</typeparam>
+            <param name="getFirstPage">A function which generates the first request</param>
+            <param name="uri">The original URI (used only for raising an exception)</param>
+        </member>
+        <member name="T:Octokit.Helpers.IReadOnlyPagedCollection`1">
+            <summary>
+            Reflects a collection of data returned from an API that can be paged.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Octokit.Helpers.IReadOnlyPagedCollection`1.GetNextPage">
+            <summary>
+            Returns the next page of items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Octokit.IApiConnection">
+            <summary>
+            A connection for making API requests against URI endpoints.
+            Provides type-friendly convenience methods that wrap <see cref="T:Octokit.Http.IConnection"/> methods.
+            </summary>
+        </member>
+        <member name="P:Octokit.IApiConnection.Connection">
+            <summary>
+            The underlying connection.
+            </summary>
+        </member>
+        <member name="M:Octokit.IApiConnection.Get``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Gets the API resource at the specified URI.
+            </summary>
+            <typeparam name="T">Type of the API resource to get.</typeparam>
+            <param name="uri">URI of the API resource to get</param>
+            <param name="parameters">Parameters to add to the API request</param>
+            <returns>The API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Get``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.String)">
+            <summary>
+            Gets the API resource at the specified URI.
+            </summary>
+            <typeparam name="T">Type of the API resource to get.</typeparam>
+            <param name="uri">URI of the API resource to get</param>
+            <param name="parameters">Parameters to add to the API request</param>
+            <param name="accepts">Accept header to use for the API request</param>
+            <returns>The API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.GetHtml(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Gets the HTML content of the API resource at the specified URI.
+            </summary>
+            <param name="uri">URI of the API resource to get</param>
+            <param name="parameters">Parameters to add to the API request</param>
+            <returns>The API resource's HTML content.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.GetAll``1(System.Uri)">
+            <summary>
+            Gets all API resources in the list at the specified URI.
+            </summary>
+            <typeparam name="T">Type of the API resource in the list.</typeparam>
+            <param name="uri">URI of the API resource to get</param>
+            <returns><see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of the The API resources in the list.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.GetAll``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Gets all API resources in the list at the specified URI.
+            </summary>
+            <typeparam name="T">Type of the API resource in the list.</typeparam>
+            <param name="uri">URI of the API resource to get</param>
+            <param name="parameters">Parameters to add to the API request</param>
+            <returns><see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of the The API resources in the list.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.GetAll``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.String)">
+            <summary>
+            Gets all API resources in the list at the specified URI.
+            </summary>
+            <typeparam name="T">Type of the API resource in the list.</typeparam>
+            <param name="uri">URI of the API resource to get</param>
+            <param name="parameters">Parameters to add to the API request</param>
+            <param name="accepts">Accept header to use for the API request</param>
+            <returns><see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of the The API resources in the list.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Post(System.Uri)">
+            <summary>
+            Creates a new API resource in the list at the specified URI.
+            </summary>
+            <param name="uri">URI endpoint to send request to</param>
+            <returns><seealso cref="T:System.Net.HttpStatusCode"/>Representing the received HTTP response</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Post``1(System.Uri,System.Object)">
+            <summary>
+            Creates a new API resource in the list at the specified URI.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to get</param>
+            <param name="data">Object that describes the new API resource; this will be serialized and used as the request's body</param>
+            <returns>The created API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Post``1(System.Uri,System.Object,System.String)">
+            <summary>
+            Creates a new API resource in the list at the specified URI.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to get</param>
+            <param name="data">Object that describes the new API resource; this will be serialized and used as the request's body</param>
+            <param name="accepts">Accept header to use for the API request</param>
+            <returns>The created API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Post``1(System.Uri,System.Object,System.String,System.String)">
+            <summary>
+            Creates a new API resource in the list at the specified URI.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to get</param>
+            <param name="data">Object that describes the new API resource; this will be serialized and used as the request's body</param>
+            <param name="accepts">Accept header to use for the API request</param>
+            <param name="contentType">Content type of the API request</param>
+            <returns>The created API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Post``1(System.Uri,System.Object,System.String,System.String,System.String)">
+            <summary>
+            Creates a new API resource in the list at the specified URI.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to get</param>
+            <param name="data">Object that describes the new API resource; this will be serialized and used as the request's body</param>
+            <param name="accepts">Accept header to use for the API request</param>
+            <param name="contentType">Content type of the API request</param>
+            <param name="twoFactorAuthenticationCode">Two Factor Authentication Code</param>
+            <returns>The created API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Post``1(System.Uri,System.Object,System.String,System.String,System.TimeSpan)">
+            <summary>
+            Creates a new API resource in the list at the specified URI.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to get</param>
+            <param name="data">Object that describes the new API resource; this will be serialized and used as the request's body</param>
+            <param name="accepts">Accept header to use for the API request</param>
+            <param name="contentType">Content type of the API request</param>
+            <param name="timeout">Timeout for the request</param>
+            <returns>The created API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Put(System.Uri)">
+            <summary>
+            Creates or replaces the API resource at the specified URI
+            </summary>
+            <param name="uri">URI of the API resource to put</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> for the request's execution.</returns>
+        </member>
+        <member name="M:Octokit.IApiConnection.Put``1(System.Uri,System.Object)">
+            <summary>
+            Creates or replaces the API resource at the specified URI.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to create or replace</param>
+            <param name="data">Object that describes the API resource; this will be serialized and used as the request's body</param>
+            <returns>The created API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Put``1(System.Uri,System.Object,System.String)">
+            <summary>
+            Creates or replaces the API resource at the specified URI.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to create or replace</param>
+            <param name="data">Object that describes the API resource; this will be serialized and used as the request's body</param>
+            <param name="twoFactorAuthenticationCode">The two-factor authentication code in response to the current user's previous challenge</param>
+            <returns>The created API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Put``1(System.Uri,System.Object,System.String,System.String)">
+            <summary>
+            Creates or replaces the API resource at the specified URI.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to create or replace</param>
+            <param name="data">Object that describes the API resource; this will be serialized and used as the request's body</param>
+            <param name="twoFactorAuthenticationCode">The two-factor authentication code in response to the current user's previous challenge</param>
+            <param name="accepts">Accept header to use for the API request</param>
+            <returns>The created API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Patch(System.Uri)">
+            <summary>
+            Updates the API resource at the specified URI.
+            </summary>
+            <param name="uri">URI of the API resource to patch</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> for the request's execution.</returns>
+        </member>
+        <member name="M:Octokit.IApiConnection.Patch``1(System.Uri,System.Object)">
+            <summary>
+            Updates the API resource at the specified URI.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to update</param>
+            <param name="data">Object that describes the API resource; this will be serialized and used as the request's body</param>
+            <returns>The updated API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Patch``1(System.Uri,System.Object,System.String)">
+            <summary>
+            Updates the API resource at the specified URI.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to update</param>
+            <param name="data">Object that describes the API resource; this will be serialized and used as the request's body</param>
+            <param name="accepts">Accept header to use for the API request</param>
+            <returns>The updated API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.Delete(System.Uri)">
+            <summary>
+            Deletes the API object at the specified URI.
+            </summary>
+            <param name="uri">URI of the API resource to delete</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> for the request's execution.</returns>
+        </member>
+        <member name="M:Octokit.IApiConnection.Delete(System.Uri,System.String)">
+            <summary>
+            Deletes the API object at the specified URI.
+            </summary>
+            <param name="uri">URI of the API resource to delete</param>
+            <param name="twoFactorAuthenticationCode">Two Factor Code</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> for the request's execution.</returns>
+        </member>
+        <member name="M:Octokit.IApiConnection.Delete(System.Uri,System.Object)">
+            <summary>
+            Deletes the API object at the specified URI.
+            </summary>
+            <param name="uri">URI of the API resource to delete</param>
+            <param name="data">Object that describes the API resource; this will be serialized and used as the request's body</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> for the request's execution.</returns>
+        </member>
+        <member name="M:Octokit.IApiConnection.GetRedirect(System.Uri)">
+            <summary>
+            Executes a GET to the API object at the specified URI. This operation is appropriate for
+            API calls which wants to return the redirect URL.
+            It expects the API to respond with a 302 Found.
+            </summary>
+            <param name="uri">URI of the API resource to get</param>
+            <returns>The URL returned by the API in the Location header</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs, or the API does not respond with a 302 Found</exception>
+        </member>
+        <member name="M:Octokit.IApiConnection.GetQueuedOperation``1(System.Uri,System.Threading.CancellationToken)">
+            <summary>
+            Executes a GET to the API object at the specified URI. This operation is appropriate for API calls which 
+            queue long running calculations and return a collection of a resource.
+            It expects the API to respond with an initial 202 Accepted, and queries again until a 200 OK is received.
+            It returns an empty collection if it receives a 204 No Content response.
+            </summary>
+            <typeparam name="T">The API resource's type.</typeparam>
+            <param name="uri">URI of the API resource to update</param>
+            <param name="cancellationToken">A token used to cancel this potentially long running request</param>
+            <returns>The updated API resource.</returns>
+            <exception cref="!:ApiException">Thrown when an API error occurs.</exception>
+        </member>
+        <member name="P:Octokit.Http.IApiInfo.AcceptedOauthScopes">
+            <summary>
+            Oauth scopes accepted for this particular call.
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IApiInfo.Etag">
+            <summary>
+            Etag
+            </summary>
+        </member>
+        <member name="T:Octokit.Http.IApiInfoProvider">
+            <summary>
+            Provides a property for the Last recorded API infomation
+            </summary>
+        </member>
+        <member name="M:Octokit.Http.IApiInfoProvider.GetLastApiInfo">
+            <summary>
+            Gets the latest API Info - this will be null if no API calls have been made
+            </summary>
+            <returns><seealso cref="!:ApiInfo"/> representing the information returned as part of an Api call</returns>
+        </member>
+        <member name="T:Octokit.Http.IConnection">
+            <summary>
+            A connection for making HTTP requests against URI endpoints.
+            </summary>
+        </member>
+        <member name="M:Octokit.Http.IConnection.GetHtml(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Performs an asynchronous HTTP GET request that expects a <seealso cref="T:Octokit.Http.IResponse"/> containing HTML.
+            </summary>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="parameters">Querystring parameters for the request</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Get``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.String)">
+            <summary>
+            Performs an asynchronous HTTP GET request.
+            Attempts to map the response to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="parameters">Querystring parameters for the request</param>
+            <param name="accepts">Specifies accepted response media types.</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Get``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.String,System.Boolean)">
+            <summary>
+            Performs an asynchronous HTTP GET request.
+            Attempts to map the response to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="parameters">Querystring parameters for the request</param>
+            <param name="accepts">Specifies accepted response media types.</param>
+            <param name="allowAutoRedirect">To follow redirect links automatically or not</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Get``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Performs an asynchronous HTTP GET request.
+            Attempts to map the response to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="parameters">Querystring parameters for the request</param>
+            <param name="accepts">Specifies accepted response media types.</param>
+            <param name="cancellationToken">A token used to cancel the Get request</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Get``1(System.Uri,System.TimeSpan)">
+            <summary>
+            Performs an asynchronous HTTP GET request.
+            Attempts to map the response to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="timeout">Expiration time of the request</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Patch(System.Uri)">
+            <summary>
+            Performs an asynchronous HTTP PATCH request.
+            </summary>
+            <param name="uri">URI endpoint to send request to</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Patch``1(System.Uri,System.Object)">
+            <summary>
+            Performs an asynchronous HTTP PATCH request.
+            Attempts to map the response body to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="body">The object to serialize as the body of the request</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Patch``1(System.Uri,System.Object,System.String)">
+            <summary>
+            Performs an asynchronous HTTP PATCH request.
+            Attempts to map the response body to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="body">The object to serialize as the body of the request</param>
+            <param name="accepts">Specifies accepted response media types.</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Post(System.Uri)">
+            <summary>
+            Performs an asynchronous HTTP POST request.
+            </summary>
+            <param name="uri">URI endpoint to send request to</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Post``1(System.Uri,System.Object,System.String,System.String)">
+            <summary>
+            Performs an asynchronous HTTP POST request.
+            Attempts to map the response body to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="body">The object to serialize as the body of the request</param>
+            <param name="accepts">Specifies accepted response media types.</param>
+            <param name="contentType">Specifies the media type of the request body</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Post``1(System.Uri,System.Object,System.String,System.String,System.String)">
+            <summary>
+            Performs an asynchronous HTTP POST request.
+            Attempts to map the response body to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="body">The object to serialize as the body of the request</param>
+            <param name="accepts">Specifies accepted response media types.</param>
+            <param name="contentType">Specifies the media type of the request body</param>
+            <param name="twoFactorAuthenticationCode">Two Factor Authentication Code</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Post``1(System.Uri,System.Object,System.String,System.String,System.TimeSpan)">
+            <summary>
+            Performs an asynchronous HTTP POST request.
+            Attempts to map the response body to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="body">The object to serialize as the body of the request</param>
+            <param name="accepts">Specifies accepted response media types.</param>
+            <param name="contentType">Specifies the media type of the request body</param>
+            <param name="timeout"></param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Post``1(System.Uri,System.Object,System.String,System.String,System.Uri)">
+            <summary>
+            Performs an asynchronous HTTP POST request.
+            Attempts to map the response body to an object of type <typeparamref name="T"/>
+            </summary>
+            <remarks>
+            We have one case where we need to override the BaseAddress. This overload is for that case.
+            https://developer.github.com/v3/oauth/#web-application-flow
+            </remarks>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="body">The object to serialize as the body of the request</param>
+            <param name="accepts">Specifies accepted response media types.</param>
+            <param name="contentType">Specifies the media type of the request body</param>
+            <param name="baseAddress">Allows overriding the base address for a post.</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Put``1(System.Uri,System.Object)">
+            <summary>
+            Performs an asynchronous HTTP PUT request.
+            Attempts to map the response body to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="body">The body of the request</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Put``1(System.Uri,System.Object,System.String)">
+            <summary>
+            Performs an asynchronous HTTP PUT request using the provided two factor authentication code.
+            Attempts to map the response body to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="body">The object to serialize as the body of the request</param>
+            <param name="twoFactorAuthenticationCode">Two factory authentication code to use</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Put``1(System.Uri,System.Object,System.String,System.String)">
+            <summary>
+            Performs an asynchronous HTTP PUT request using the provided two factor authentication code.
+            Attempts to map the response body to an object of type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">The type to map the response to</typeparam>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="body">The object to serialize as the body of the request</param>
+            <param name="twoFactorAuthenticationCode">Two factory authentication code to use</param>
+            <param name="accepts">Specifies accepted response media types.</param>
+            <returns><seealso cref="T:Octokit.Http.IResponse"/> representing the received HTTP response</returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Put(System.Uri)">
+            <summary>
+            Performs an asynchronous HTTP PUT request that expects an empty response.
+            </summary>
+            <param name="uri">URI endpoint to send request to</param>
+            <returns>The returned <seealso cref="T:System.Net.HttpStatusCode"/></returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Delete(System.Uri)">
+            <summary>
+            Performs an asynchronous HTTP DELETE request that expects an empty response.
+            </summary>
+            <param name="uri">URI endpoint to send request to</param>
+            <returns>The returned <seealso cref="T:System.Net.HttpStatusCode"/></returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Delete(System.Uri,System.String)">
+            <summary>
+            Performs an asynchronous HTTP DELETE request that expects an empty response.
+            </summary>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="twoFactorAuthenticationCode">Two Factor Code</param>
+            <returns>The returned <seealso cref="T:System.Net.HttpStatusCode"/></returns>
+        </member>
+        <member name="M:Octokit.Http.IConnection.Delete(System.Uri,System.Object)">
+            <summary>
+            Performs an asynchronous HTTP DELETE request that expects an empty response.
+            </summary>
+            <param name="uri">URI endpoint to send request to</param>
+            <param name="data">The object to serialize as the body of the request</param>
+            <returns>The returned <seealso cref="T:System.Net.HttpStatusCode"/></returns>
+        </member>
+        <member name="P:Octokit.Http.IConnection.BaseAddress">
+            <summary>
+            Base address for the connection.
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IConnection.CredentialStore">
+            <summary>
+            Gets the <seealso cref="T:Octokit.Http.ICredentialStore"/> used to provide credentials for the connection.
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IConnection.Credentials">
+            <summary>
+            Gets or sets the credentials used by the connection.
+            </summary>
+            <remarks>
+            You can use this property if you only have a single hard-coded credential. Otherwise, pass in an 
+            <see cref="T:Octokit.Http.ICredentialStore"/> to the constructor. 
+            Setting this property will change the <see cref="T:Octokit.Http.ICredentialStore"/> to use 
+            the default <see cref="!:InMemoryCredentialStore"/> with just these credentials.
+            </remarks>
+        </member>
+        <member name="P:Octokit.Http.IRateLimit.Limit">
+            <summary>
+            The maximum number of requests that the consumer is permitted to make per hour.
+            </summary>
+        </member>
+        <member name="M:Octokit.Http.IRateLimit.Clone">
+            <summary>
+            Allows you to clone RateLimit
+            </summary>
+            <returns>A clone of <seealso cref="T:Octokit.Http.IRateLimit"/></returns>
+        </member>
+        <member name="P:Octokit.Http.IRateLimit.Remaining">
+            <summary>
+            The number of requests remaining in the current rate limit window.
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IRateLimit.Reset">
+            <summary>
+            The date and time at which the current rate limit window resets
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IRateLimit.ResetAsUtcEpochSeconds">
+            <summary>
+            The date and time at which the current rate limit window resets - in UTC epoch seconds
+            </summary>
+        </member>
+        <member name="T:Octokit.Http.IApiResponse`1">
+            <summary>
+            A response from an API call that includes the deserialized object instance.
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IApiResponse`1.Body">
+            <summary>
+            Object deserialized from the JSON response body.
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IApiResponse`1.HttpResponse">
+            <summary>
+            The original non-deserialized http response.
+            </summary>
+        </member>
+        <member name="T:Octokit.Http.IResponse">
+            <summary>
+            Represents a generic HTTP response
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IResponse.Body">
+            <summary>
+            Raw response body. Typically a string, but when requesting images, it will be a byte array.
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IResponse.Headers">
+            <summary>
+            Information about the API.
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IResponse.ApiInfo">
+            <summary>
+            Information about the API response parsed from the response headers.
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IResponse.StatusCode">
+            <summary>
+            The response status code.
+            </summary>
+        </member>
+        <member name="P:Octokit.Http.IResponse.ContentType">
+            <summary>
+            The content type of the response.
+            </summary>
+        </member>
+        <member name="T:Octokit.Internal.IHttpClient">
+            <summary>
+            Generic Http client. Useful for those who want to swap out System.Net.HttpClient with something else.
+            </summary>
+            <remarks>
+            Most folks won't ever need to swap this out. But if you're trying to run this on Windows Phone, you might.
+            </remarks>
+        </member>
+        <member name="M:Octokit.Internal.IHttpClient.Send(Octokit.Internal.IRequest,System.Threading.CancellationToken)">
+            <summary>
+            Sends the specified request and returns a response.
+            </summary>
+            <param name="request">A <see cref="T:Octokit.Internal.IRequest"/> that represents the HTTP request</param>
+            <param name="cancellationToken">Used to cancel the request</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task" /> of <see cref="T:Octokit.Http.IResponse"/></returns>
+        </member>
+    </members>
+</doc>
