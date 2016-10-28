@@ -5,6 +5,19 @@
 	<title>注册——手机快速注册</title>
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/styles.css" />
+	<script type="text/javascript.js"src="../ihangjiaHTML/js/jquery-3.1.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+
+			$(".chongzhi").click(function(){
+				var array=$("input").val();
+				if(array==""){
+					$("input").css("border","#ff4543 1px solid");
+					$("p").css("color","#ff4543").show();
+				}
+			})
+		})
+	</script>
 </head>
 <body>
 		<div class="logo">
@@ -48,9 +61,9 @@
 			<input type="text"style="width: 130px;"/>
 				<span><img src="images/mobile_s.png" alt="" /><a href="#">换一张</a></span>
 			</div>
-			<div class="gain"style="margin-left: 70px;">
+			<a href="#"><div class="gain"style="margin-left: 70px;">
 			获取手机验证码
-			</div>
+			</div></a>
 			<div class="c_gain">
 				<p>手机验证码</p>
 			<input type="text" />
